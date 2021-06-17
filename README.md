@@ -13,7 +13,7 @@
 <p align="center"><strong>Course Name</strong>: Mobile and Wireless Application Development </p>
 <p align="center"><strong>Course No</strong>: CSE 486 <strong>Sec</strong><strong>:</strong> 01</p>
 <p align="center"><strong>Faculty</strong>: Shaikh Shawon Arefin Shimon (SAS3)</p>
-<p align="center"><strong><u>Member <u>:</u> 1</u></strong></p>
+<p align="center"><strong><u>Member<u>:</u> 1</u></strong></p>
 <p align="center"><strong>Name</strong><strong>:</strong> Leyon Ibn Kamal</p>
 <p align="center"><strong>ID</strong><strong>:&nbsp; </strong> 1811050 </p>
 <p align="center"><strong>Email</strong><strong>:</strong> <a href="mailto:abc.def@northsouth.edu"> leyon.kamal@northsouth.edu </a></p>
