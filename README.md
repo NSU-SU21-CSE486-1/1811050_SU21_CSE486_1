@@ -20,7 +20,7 @@
 
 <p align="center"><strong>Git Repository</strong><strong>: </strong><a href="https://github.com/NSU-SU21-CSE486-1/1811050_SU21_CSE486_1">https://github.com/NSU-SU21-CSE486-1/1811050_SU21_CSE486_1</a></p>
 
-<p align="center"><strong>Date Prepared</strong><strong>: </strong>March 03, 2021</p>
+<p align="center"><strong>Date Prepared</strong><strong>: </strong>June 17, 2021</p>
 <p><strong>&nbsp;</strong></p>
 <p><strong>&nbsp;</strong></p>
 
@@ -31,7 +31,7 @@ Repository for all work in CSE486.1
 
 Folder Structure:
 
-1234567-SP21-CSE486-S01
+1811050_SU21_CSE486_1
 
 |-------- Lab
 
