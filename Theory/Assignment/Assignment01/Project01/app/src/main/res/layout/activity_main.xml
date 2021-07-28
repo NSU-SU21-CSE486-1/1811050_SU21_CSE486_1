@@ -22,7 +22,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpLabel"
@@ -56,7 +56,7 @@
                     android:text="Name" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/userNameText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -71,6 +71,7 @@
                     android:text="Date of Birth" />
 
                 <DatePicker
+                    android:id="@+id/dateOfBirthPicker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -85,7 +86,7 @@
                     android:text="NID" />
 
                 <EditText
-                    android:id="@+id/editTextNumber"
+                    android:id="@+id/nidNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -99,7 +100,7 @@
                     android:text="Blood Group" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/bloodGroupText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -129,10 +130,9 @@
                     android:text="University" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/universitySelectSpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dialog" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/textView"
@@ -142,7 +142,7 @@
                     android:text="Department" />
 
                 <Spinner
-                    android:id="@+id/spinner2"
+                    android:id="@+id/universityDepartmentSelectSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -154,7 +154,7 @@
                     android:text="Study Level" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/universityStudyLevelSelectSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -166,7 +166,7 @@
                     android:text="Student ID" />
 
                 <EditText
-                    android:id="@+id/editTextNumber2"
+                    android:id="@+id/studentIDNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -196,7 +196,7 @@
                     android:text="Email" />
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress"
+                    android:id="@+id/userEmailText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -210,7 +210,7 @@
                     android:text="Phone Number" />
 
                 <EditText
-                    android:id="@+id/editTextPhone"
+                    android:id="@+id/userPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -230,15 +230,122 @@
                     android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Signup Complete"
+                    android:text="Review"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Profile"
                     android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/reviewName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/reviewDateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/reviewNIDNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+
+                <TextView
+                    android:id="@+id/reviewBloodGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="University Affiliation"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/reviewUniversityName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/reviewUniversityDepartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/reviewUniversityStudyLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/reviewStudentID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Contact Info"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/reviewEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
+                <TextView
+                    android:id="@+id/reviewPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Text"
+                    android:textAlignment="viewStart" />
+
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
