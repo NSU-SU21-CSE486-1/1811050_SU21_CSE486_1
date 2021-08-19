@@ -28,7 +28,6 @@ public class UniversityInfoForm extends Fragment {
 
     public static UniversityInfoForm newInstance() {
         UniversityInfoForm fragment = new UniversityInfoForm();
-        numberOfUniInfoFormsCreated++;
         return fragment;
     }
 
@@ -47,6 +46,9 @@ public class UniversityInfoForm extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        numberOfUniInfoFormsCreated++;
+        view.setTag("UniData" + numberOfUniInfoFormsCreated);
 
         Spinner universitySelectSpinner = view.findViewById(R.id.universitySelectSpinner);
         ArrayAdapter<CharSequence> uniNameAdapter = ArrayAdapter.createFromResource(getContext(), R.array.university_list, android.R.layout.simple_spinner_item);

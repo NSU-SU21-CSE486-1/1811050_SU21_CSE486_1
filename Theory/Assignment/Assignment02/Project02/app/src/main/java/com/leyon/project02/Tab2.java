@@ -42,17 +42,15 @@ public class Tab2 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        LinearLayout linearLayout = view.findViewById(R.id.uniDetailsLinearLayout);
+        LinearLayout linearLayout = view.findViewById(R.id.tab2);
         Button addUniversityButton = view.findViewById(R.id.addUniversityDetails);
         addUniversityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.uniDetailsLinearLayout, new UniversityInfoForm());
+                fragmentTransaction.add(R.id.uniFragmentHolder, new UniversityInfoForm());
                 fragmentTransaction.commit();
-
-                //Toast.makeText(getContext(), Integer.toString(linearLayout.getChildCount()), Toast.LENGTH_SHORT).show();
             }
         });
     }

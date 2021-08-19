@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,16 @@ public class Tab3 extends Fragment {
 
     public void SubmitForm() {
 
+        LinearLayout tab1 = MainActivity.pagerAdapter.getFragment(1).getView().findViewById(R.id.tab1);
+        EditText userNameText = tab1.findViewById(R.id.userNameText);
 
-        //TextView testText = (TextView) MainActivity.pagerAdapter.FindItemByID(R.id.testText);
+        LinearLayout tab2 = MainActivity.pagerAdapter.getFragment(2).getView().findViewById(R.id.uniFragmentHolder);
+        View uniV = tab2.findViewWithTag("UniData" + UniversityInfoForm.numberOfUniInfoFormsCreated);
+        EditText id = uniV.findViewById(R.id.studentIDNumber);
+        //Boolean.toString(uniV==null)
+        //Integer.toString(UniversityInfoForm.numberOfUniInfoFormsCreated)
+
+        Toast.makeText(getContext(), userNameText.getText().toString(), Toast.LENGTH_SHORT).show();
+
     }
 }

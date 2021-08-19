@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Tab1"
-    android:id="@+id/tab1">
+    tools:context=".Tab1">
 
     <LinearLayout
+        android:id="@+id/tab1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -45,7 +45,7 @@ public class PagerAdapter extends FragmentStateAdapter {
         return (ArrayList<Fragment>) fragmentList;
     }
 
-    public View FindItemByID(@IdRes int id) {
+    /*public View findItemByID(@IdRes int id) {
         View item = null; //result
 
         for (Fragment tab: fragmentList) {
@@ -55,5 +55,9 @@ public class PagerAdapter extends FragmentStateAdapter {
         }
 
         return item; //the function that called this should cast to proper class
+    }*/
+
+    public Fragment getFragment(int pageNumber) {
+        return fragmentList.get(pageNumber-1); //index for arraylist start at zero
     }
 }
