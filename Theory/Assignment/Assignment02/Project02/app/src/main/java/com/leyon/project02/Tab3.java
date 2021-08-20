@@ -1,11 +1,13 @@
 package com.leyon.project02;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,16 +58,73 @@ public class Tab3 extends Fragment {
 
     public void SubmitForm() {
 
-        LinearLayout tab1 = MainActivity.pagerAdapter.getFragment(1).getView().findViewById(R.id.tab1);
-        EditText userNameText = tab1.findViewById(R.id.userNameText);
+        try {
+            UserData newUserData = new UserData(); //save all data here then add it to DataStorage;
 
-        LinearLayout tab2 = MainActivity.pagerAdapter.getFragment(2).getView().findViewById(R.id.uniFragmentHolder);
-        View uniV = tab2.findViewWithTag("UniData" + UniversityInfoForm.numberOfUniInfoFormsCreated);
-        EditText id = uniV.findViewById(R.id.studentIDNumber);
-        //Boolean.toString(uniV==null)
-        //Integer.toString(UniversityInfoForm.numberOfUniInfoFormsCreated)
+            //data from tab1
+            LinearLayout tab1 = MainActivity.pagerAdapter.getFragment(1).getView().findViewById(R.id.tab1);
+            EditText userNameText = tab1.findViewById(R.id.userNameText);
+            DatePicker dateOfBirthPicker = tab1.findViewById(R.id.dateOfBirthPicker);
+            EditText nidNumber = tab1.findViewById(R.id.nidNumber);
+            EditText bloodGroupText = tab1.findViewById(R.id.bloodGroupText);
 
-        Toast.makeText(getContext(), userNameText.getText().toString(), Toast.LENGTH_SHORT).show();
+            //store data from tab1
+            newUserData.setUserName(userNameText.getText().toString());
+            newUserData.setDateOfBirth( dateOfBirthPicker.getDayOfMonth()
+                    + "/" + dateOfBirthPicker.getMonth()
+                    + "/" + dateOfBirthPicker.getYear() );
+            newUserData.setNid(Integer.parseInt(nidNumber.getText().toString()));
+            newUserData.setBloodGroup(bloodGroupText.getText().toString());
 
+            //data from tab2
+            LinearLayout tab2 = MainActivity.pagerAdapter.getFragment(2).getView().findViewById(R.id.uniFragmentHolder);
+
+            int numOfUniAffiliations = UniversityInfoForm.numberOfUniInfoFormsCreated;
+
+            for (int i=1; i <= numOfUniAffiliations; i++) {
+                View uniV = tab2.findViewWithTag("UniData" + i); //tag format set in UniversityInfoForm fragment class
+
+                Spinner universitySelectSpinner = uniV.findViewById(R.id.universitySelectSpinner);
+                Spinner universityDepartmentSelectSpinner = uniV.findViewById(R.id.universityDepartmentSelectSpinner);
+                Spinner universityStudyLevelSelectSpinner = uniV.findViewById(R.id.universityStudyLevelSelectSpinner);
+                EditText studentIDNumber = uniV.findViewById(R.id.studentIDNumber);
+                EditText universityEmail = uniV.findViewById(R.id.universityEmail);
+
+                //store data from UniversityInfoForm fragment from tab2
+                UniversityData newUniData = new UniversityData(
+                        universitySelectSpinner.getSelectedItem().toString(),
+                        universityDepartmentSelectSpinner.getSelectedItem().toString(),
+                        universityStudyLevelSelectSpinner.getSelectedItem().toString(),
+                        Integer.parseInt(studentIDNumber.getText().toString()),
+                        universityEmail.getText().toString()
+                );
+
+                newUserData.addUniversityAffiliation(newUniData);
+            }
+
+            //data from tab3
+            LinearLayout tab3 = MainActivity.pagerAdapter.getFragment(3).getView().findViewById(R.id.tab3);
+            EditText userEmailText = tab3.findViewById(R.id.userEmailText);
+            EditText userPhoneNumber = tab3.findViewById(R.id.userPhoneNumber);
+
+            //store tab3 data
+            newUserData.setPersonalEmail(userEmailText.getText().toString());
+            newUserData.setPhoneNo( Integer.parseInt(userPhoneNumber.getText().toString()) );
+
+            //show submitted
+            //Toast.makeText(getContext(), "Data Submitted Sucessfully", Toast.LENGTH_SHORT).show();
+
+            DataStorage.addUserData(newUserData);
+            //DataStorage.saveData();
+
+            //go to recycler view to see all stored users
+            Intent intent = new Intent(getContext(), UsersListActivity.class);
+            startActivity(intent);
+
+
+        } catch (Exception e) {
+            //error caused when Integer.parse gets empty string from EditText
+            Toast.makeText(getContext(), "Please fill up all forms", Toast.LENGTH_SHORT).show();
+        }
     }
 }

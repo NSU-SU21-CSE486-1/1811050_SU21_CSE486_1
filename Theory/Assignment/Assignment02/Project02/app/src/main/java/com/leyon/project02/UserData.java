@@ -1,17 +1,23 @@
 package com.leyon.project02;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class UserData {
+public class UserData implements Serializable {
 
     String userName;
     String dateOfBirth;
     int nid;
     String bloodGroup;
 
-    ArrayList<UniversityData> universityAffiliations;
+    List<UniversityData> universityAffiliations = new ArrayList<UniversityData>();
 
     String personalEmail;
+
+    public UserData() {
+        //empty constructor
+    }
 
     public String getUserName() {
         return userName;
@@ -46,11 +52,15 @@ public class UserData {
     }
 
     public ArrayList<UniversityData> getUniversityAffiliations() {
-        return universityAffiliations;
+        return (ArrayList<UniversityData>) universityAffiliations;
     }
 
     public void addUniversityAffiliation(String universityName, String department, String studyLevel, int studentID, String universityEmail) {
         universityAffiliations.add(new UniversityData(universityName, department, studyLevel, studentID, universityEmail));
+    }
+
+    public void addUniversityAffiliation(UniversityData newUniversityAffiliation) {
+        universityAffiliations.add(newUniversityAffiliation);
     }
 
     public String getPersonalEmail() {

@@ -1,6 +1,8 @@
 package com.leyon.project02;
 
-public class UniversityData {
+import java.io.Serializable;
+
+public class UniversityData implements Serializable {
 
     private String universityName;
     private String department;

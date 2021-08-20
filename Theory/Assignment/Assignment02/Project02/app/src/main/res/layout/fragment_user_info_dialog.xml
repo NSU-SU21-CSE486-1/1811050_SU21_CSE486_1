@@ -3,78 +3,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Tab1">
+    tools:context=".UserInfoDialog">
 
     <LinearLayout
-        android:id="@+id/tab1"
+        android:minWidth="300dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="50dp">
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Details"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Profile"
             android:textAlignment="center" />
 
         <TextView
+            android:id="@+id/detailsName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Name" />
 
-        <EditText
-            android:id="@+id/userNameText"
+        <TextView
+            android:id="@+id/detailsDateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:layout_marginTop="20dp"
+            android:text="1/2/3" />
+
+        <TextView
+            android:id="@+id/detailsNIDNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="1234567890"/>
+
+
+        <TextView
+            android:id="@+id/reviewBloodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="X+-"/>
+
+        <LinearLayout
+            android:id="@+id/detailsUniAffiliationHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Date of Birth" />
-
-        <DatePicker
-            android:id="@+id/dateOfBirthPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner" />
+            android:text="Contact Info"
+            android:textAlignment="center" />
 
         <TextView
+            android:id="@+id/detailsPersonalEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="NID" />
-
-        <EditText
-            android:id="@+id/nidNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:text="0" />
+            android:text="a@a.a"/>
 
         <TextView
+            android:id="@+id/detailsPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Blood Group" />
+            android:text="0123456789"/>
 
-        <EditText
-            android:id="@+id/bloodGroupText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
     </LinearLayout>
 
 </ScrollView>
