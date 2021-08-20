@@ -121,11 +121,12 @@ public class Tab3 extends Fragment {
 
             //go to recycler view to see all stored users
             Intent intent = new Intent(getContext(), UsersListActivity.class);
-            getActivity().finish();
+            //getActivity().finish();
             startActivity(intent);
 
 
         } catch (Exception e) {
+            Log.e("Submit", e.toString());
             //error caused when Integer.parse gets empty string from EditText
             Toast.makeText(getContext(), "Please fill up all forms", Toast.LENGTH_SHORT).show();
         }

@@ -26,13 +26,13 @@ public class UsersListActivity extends AppCompatActivity {
         recyclerView.setAdapter(userListAdapter);
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this, MainActivity.class);
         //finish();
         startActivity(intent);
-    }
+    }*/
 
     public void deleteUsersData(View view) {
         DataStorage.deleteUserData(this);
