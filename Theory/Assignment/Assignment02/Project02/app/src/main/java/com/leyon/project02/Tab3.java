@@ -114,11 +114,14 @@ public class Tab3 extends Fragment {
             //show submitted
             //Toast.makeText(getContext(), "Data Submitted Sucessfully", Toast.LENGTH_SHORT).show();
 
+            DataStorage.loadData(getContext());
             DataStorage.addUserData(newUserData);
-            //DataStorage.saveData();
+            DataStorage.saveData(getContext());
+
 
             //go to recycler view to see all stored users
             Intent intent = new Intent(getContext(), UsersListActivity.class);
+            getActivity().finish();
             startActivity(intent);
 
 

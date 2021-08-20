@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
 
 public class UsersListActivity extends AppCompatActivity {
 
@@ -21,6 +24,18 @@ public class UsersListActivity extends AppCompatActivity {
         userListAdapter = new UserListAdapter(getSupportFragmentManager());
 
         recyclerView.setAdapter(userListAdapter);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        //finish();
+        startActivity(intent);
+    }
+
+    public void deleteUsersData(View view) {
+        DataStorage.deleteUserData(this);
+        userListAdapter.notifyDataSetChanged();
     }
 }

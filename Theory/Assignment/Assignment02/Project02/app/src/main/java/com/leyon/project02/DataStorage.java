@@ -1,5 +1,7 @@
 package com.leyon.project02;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.util.Log;
 
 import java.io.File;
@@ -32,53 +34,54 @@ public class DataStorage {
         }
     }
 
-    public synchronized static void loadData() {
+    public synchronized static void loadData(Context context) {
         //file read function
-        /*
-        File f = new File(filename);
+
+        File f = new File(context.getFilesDir(), filename);
 
         if (f.exists()) {
             try {
-                FileInputStream fis = new FileInputStream(filename);
+                FileInputStream fis = context.openFileInput(filename);
                 ObjectInputStream in = new ObjectInputStream(fis);
                 listOfUsers = (ArrayList<UserData>) in.readObject();
 
                 fis.close();
                 in.close();
 
-            } catch (IOException | ClassNotFoundException exception) {
+            } catch (Exception exception) {
                 Log.e("DataStorage", exception.toString());
             }
         }
 
         if (listOfUsers==null) {
             listOfUsers = new ArrayList<UserData>();
-        }*/
+        }
     }
 
-    public synchronized static void saveData() {
+    public synchronized static void saveData(Context context) {
         //file save function
-        /*
+
         try {
-            FileOutputStream fos = new FileOutputStream(filename);
+            FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
             ObjectOutputStream out = new ObjectOutputStream(fos);
             out.writeObject(listOfUsers);
 
             fos.close();
             out.close();
 
-        } catch (IOException exception) {
+        } catch (Exception exception) {
             Log.e("DataStorage", exception.toString());
-        }*/
+        }
     }
 
     public synchronized static void addUserData(UserData userData) {
         listOfUsers.add(userData);
     }
 
-    public static void deleteUserData() {
+    public static void deleteUserData(Context context) {
         listOfUsers.clear();
-        //saveData();
+        Log.d("DataStorage", "Deleted user data");
+        saveData(context);
     }
 
     public static ArrayList<UserData> getUserList() {
