@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="university_list">
+        <item>University1</item>
+        <item>University2</item>
+        <item>University3</item>
+    </string-array>
+
+    <string-array name="departments">
+        <item>Engineering</item>
+        <item>Medical &amp; Pharmacy</item>
+        <item>Business &amp; Accounting</item>
+        <item>Arts &amp; Humanities</item>
+    </string-array>
+
+    <string-array name="study_levels">
+        <item>Bachelors</item>
+        <item>Masters</item>
+        <item>PHD</item>
+    </string-array>
+</resources>
