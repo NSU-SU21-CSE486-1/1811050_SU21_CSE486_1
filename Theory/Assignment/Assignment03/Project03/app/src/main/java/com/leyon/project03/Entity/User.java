@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "users")
-public class User {
+public class User implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     long id;
@@ -21,6 +23,12 @@ public class User {
 
     @ColumnInfo(name = "bloodgroup")
     String bloodGroup;
+
+    @ColumnInfo(name = "personalemail")
+    String personalEmail;
+
+    @ColumnInfo(name = "phonenumber")
+    int phoneNumber;
 
     public long getId() {
         return id;
@@ -60,5 +68,21 @@ public class User {
 
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
+    }
+
+    public String getPersonalEmail() {
+        return personalEmail;
+    }
+
+    public void setPersonalEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phonenumber) {
+        this.phoneNumber = phonenumber;
     }
 }

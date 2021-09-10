@@ -1,5 +1,6 @@
 package com.leyon.project03;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +18,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.leyon.project03.Entity.UniversityAffiliation;
+import com.leyon.project03.Entity.User;
 
 public class Tab3 extends Fragment {
 
@@ -55,7 +59,7 @@ public class Tab3 extends Fragment {
         });
     }
 
-    public void SubmitForm() {
+    /*public void SubmitForm() {
 
         try {
             UserData newUserData = new UserData(); //save all data here then add it to DataStorage;
@@ -113,21 +117,100 @@ public class Tab3 extends Fragment {
             //show submitted
             //Toast.makeText(getContext(), "Data Submitted Sucessfully", Toast.LENGTH_SHORT).show();
 
-            DataStorage.loadData(getContext());
-            DataStorage.addUserData(newUserData);
-            DataStorage.saveData(getContext());
+            //DataStorage.loadData(getContext());
+            //DataStorage.addUserData(newUserData);
+            //DataStorage.saveData(getContext());
 
             UniversityInfoForm.numberOfUniInfoFormsCreated = 0; //reset
 
             //go to recycler view to see all stored users
-            Intent intent = new Intent(getContext(), UsersListActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(getContext(), UsersListActivity.class);
+            //startActivity(intent);
+            //getActivity().finish();
+
+            Intent intent = new Intent();
+            getActivity().setResult(Activity.RESULT_OK, intent);
+            intent.putExtra("test", 123);
             getActivity().finish();
 
         } catch (Exception e) {
             Log.e("Submit", e.toString());
             //error caused when Integer.parse gets empty string from EditText
             Toast.makeText(getContext(), "Please fill up all forms", Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
+    public void SubmitForm() {
+        try {
+            User newUserData = new User();
+
+            //data from tab1
+            LinearLayout tab1 = MainActivity.tabPagerAdapter.getFragment(1).getView().findViewById(R.id.tab1);
+            EditText userNameText = tab1.findViewById(R.id.userNameText);
+            DatePicker dateOfBirthPicker = tab1.findViewById(R.id.dateOfBirthPicker);
+            EditText nidNumber = tab1.findViewById(R.id.nidNumber);
+            EditText bloodGroupText = tab1.findViewById(R.id.bloodGroupText);
+
+            //store data from tab1
+            newUserData.setName(userNameText.getText().toString());
+            newUserData.setDob( dateOfBirthPicker.getDayOfMonth()
+                    + "/" + dateOfBirthPicker.getMonth()
+                    + "/" + dateOfBirthPicker.getYear() );
+            newUserData.setNid(Integer.parseInt(nidNumber.getText().toString()));
+            newUserData.setBloodGroup(bloodGroupText.getText().toString());
+
+            //data from tab2
+            LinearLayout tab2 = MainActivity.tabPagerAdapter.getFragment(2).getView().findViewById(R.id.uniFragmentHolder);
+
+            int numOfUniAffiliations = UniversityInfoForm.numberOfUniInfoFormsCreated;
+            UniversityAffiliation[] tmpUniAffiliationArray = new UniversityAffiliation[numOfUniAffiliations];
+
+            for (int i=1; i <= numOfUniAffiliations; i++) {
+                View uniV = tab2.findViewWithTag("UniData" + i); //tag format set in UniversityInfoForm fragment class
+
+                Spinner universitySelectSpinner = uniV.findViewById(R.id.universitySelectSpinner);
+                Spinner universityDepartmentSelectSpinner = uniV.findViewById(R.id.universityDepartmentSelectSpinner);
+                Spinner universityStudyLevelSelectSpinner = uniV.findViewById(R.id.universityStudyLevelSelectSpinner);
+                EditText studentIDNumber = uniV.findViewById(R.id.studentIDNumber);
+                EditText universityEmail = uniV.findViewById(R.id.universityEmail);
+
+                //store data from UniversityInfoForm fragment from tab2
+                tmpUniAffiliationArray[i-1] = new UniversityAffiliation();
+                tmpUniAffiliationArray[i-1].setUniversityName(universitySelectSpinner.getSelectedItem().toString());
+                tmpUniAffiliationArray[i-1].setDepartment(universityDepartmentSelectSpinner.getSelectedItem().toString());
+                tmpUniAffiliationArray[i-1].setStudyLevel(universityStudyLevelSelectSpinner.getSelectedItem().toString());
+                tmpUniAffiliationArray[i-1].setUniversityStudentID(Integer.parseInt(studentIDNumber.getText().toString()));
+                tmpUniAffiliationArray[i-1].setUniversityEmail(universityEmail.getText().toString());
+            }
+
+            //data from tab3
+            LinearLayout tab3 = MainActivity.tabPagerAdapter.getFragment(3).getView().findViewById(R.id.tab3);
+            EditText userEmailText = tab3.findViewById(R.id.userEmailText);
+            EditText userPhoneNumber = tab3.findViewById(R.id.userPhoneNumber);
+
+            //store tab3 data
+            newUserData.setPersonalEmail(userEmailText.getText().toString());
+            newUserData.setPhoneNumber( Integer.parseInt(userPhoneNumber.getText().toString()) );
+
+            //show submitted
+            //Toast.makeText(getContext(), "Data Submitted Sucessfully", Toast.LENGTH_SHORT).show();
+
+            //submit data to database
+
+            UniversityInfoForm.numberOfUniInfoFormsCreated = 0; //reset
+
+            //return result to activity
+            Intent replyIntent = new Intent();
+            //startActivity(new Intent(getActivity(), UsersListActivity.class));
+            getActivity().setResult(Activity.RESULT_OK, replyIntent);
+            replyIntent.putExtra(MainActivity.USERDATA, newUserData);
+            replyIntent.putExtra(MainActivity.UNIVERSITYDATA, tmpUniAffiliationArray);
+            getActivity().finish();
+
+        } catch (Exception e) {
+            //error caused when Integer.parse gets empty string from EditText
+            Toast.makeText(getContext(), "Please fill up all forms", Toast.LENGTH_SHORT).show();
+            return;
         }
     }
 }

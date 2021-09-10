@@ -19,7 +19,7 @@ public interface UserDAO {
     LiveData<List<User>> getAllUsers();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(User user);
+    long insert(User user);
 
     @Update
     void update(User user);

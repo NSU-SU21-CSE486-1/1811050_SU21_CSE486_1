@@ -5,16 +5,18 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(
         tableName = "universityaffiliations",
         foreignKeys = @ForeignKey(
                 entity = User.class,
                 parentColumns = {"id"},
                 childColumns = {"userid"},
-                onDelete = ForeignKey.CASCADE //no onUpdate Cascade because using id that cannot be updated
+                onDelete = ForeignKey.CASCADE
         )
 )
-public class UniversityAffiliation {
+public class UniversityAffiliation implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     long id;

@@ -21,7 +21,7 @@ public interface UniversityAffiliationDAO {
     LiveData<List<UniversityAffiliation>> getAllUniversityAffiliations();
 
     @Query("SELECT * FROM universityaffiliations WHERE userid = :userid")
-    LiveData<List<UniversityAffiliation>> getUniversityAffiliationByUserId(long userid);
+    List<UniversityAffiliation> getUniversityAffiliationByUserId(long userid);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(UniversityAffiliation universityAffiliation);

@@ -11,9 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.leyon.project03.Entity.User;
+
+import java.util.List;
+
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> {
 
     FragmentManager fragmentManager;
+
+    List<User> userList; //cache
 
     public UserListAdapter(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
@@ -36,24 +42,32 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), holder.userName.getText().toString(), Toast.LENGTH_SHORT).show();
 
-
-                UserInfoDialog detailsDialog = UserInfoDialog.newInstance(DataStorage.getUserList().get(i));
+                //UserInfoDialog detailsDialog = UserInfoDialog.newInstance(DataStorage.getUserList().get(i));
+                //detailsDialog.show(fragmentManager, "UserDetails");
+                UserInfoDialog detailsDialog = UserInfoDialog.newInstance(userList.get(i));
                 detailsDialog.show(fragmentManager, "UserDetails");
             }
         });
 
-        holder.userName.setText("Name: " + DataStorage.getUserList().get(position).userName);
-        holder.userPhoneNo.setText("Phone: " + Integer.toString(DataStorage.getUserList().get(position).phoneNo));
+        //holder.userName.setText("Name: " + DataStorage.getUserList().get(position).userName);
+        holder.userName.setText("Name: " + userList.get(position).getName());
+        //holder.userPhoneNo.setText("Phone: " + Integer.toString(DataStorage.getUserList().get(position).phoneNo));
+        holder.userPhoneNo.setText("Phone: " + Integer.toString(userList.get(position).getPhoneNumber()));
     }
 
     @Override
     public int getItemCount() {
-        return DataStorage.getNumberOfUserDataStored();
+        //return DataStorage.getNumberOfUserDataStored();
+        if (userList != null) {
+            return userList.size();
+        } else {
+            return 0;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout userListItem;
+        LinearLayout userListItem; //for setting an onClickListener
         TextView userName;
         TextView userPhoneNo;
 
@@ -65,4 +79,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         }
     }
 
+    public void setUsers(List<User> users){
+        userList = users;
+        notifyDataSetChanged();
+    }
 }

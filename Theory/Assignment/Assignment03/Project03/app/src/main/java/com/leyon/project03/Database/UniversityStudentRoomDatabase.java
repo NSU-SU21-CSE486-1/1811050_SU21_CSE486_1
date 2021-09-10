@@ -21,7 +21,7 @@ public abstract class UniversityStudentRoomDatabase extends RoomDatabase {
 
     private static UniversityStudentRoomDatabase INSTANCE;
 
-    private static final int NUMBER_OF_THREADS = 4;
+    private static final int NUMBER_OF_THREADS = 1;
     private static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public abstract UserDAO userDAO();
@@ -40,6 +40,9 @@ public abstract class UniversityStudentRoomDatabase extends RoomDatabase {
                     "studentuniversitydatabase"
                 ).fallbackToDestructiveMigration()
                     .addCallback(sRoomDatabaseCallback)
+                    .allowMainThreadQueries() //bad practice, change later. but for now solves error relating to
+                                              //getting data dynamically from database
+                                              // for getUniversityAffiliationByUserId function in repository
                     .build();
             }
 

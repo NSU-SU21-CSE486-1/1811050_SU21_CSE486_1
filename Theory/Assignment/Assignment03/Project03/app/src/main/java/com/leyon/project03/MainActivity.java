@@ -10,9 +10,14 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
+
+    //these variables used when replying via intent in Tab3->Submit()
+    public static final String USERDATA = "USERDATA";
+    public static final String UNIVERSITYDATA = "UNIVERSITYDATA";
+
     TabLayout tabLayout;
     ViewPager2 viewPager;
-    public static PagerAdapter pagerAdapter; //this static to get data using its custom FindItemByID function
+    public static TabPagerAdapter tabPagerAdapter; //this static to get data using its custom FindItemByID function
 
     //public static Fragment tab1 = new Tab1();
     @Override
@@ -23,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.pager);
 
-        pagerAdapter = new PagerAdapter(this);
-        pagerAdapter.addFragment(new Tab1());
-        pagerAdapter.addFragment(new Tab2());
-        pagerAdapter.addFragment(new Tab3());
+        tabPagerAdapter = new TabPagerAdapter(this);
+        tabPagerAdapter.addFragment(new Tab1());
+        tabPagerAdapter.addFragment(new Tab2());
+        tabPagerAdapter.addFragment(new Tab3());
 
-        viewPager.setAdapter(pagerAdapter);
+        viewPager.setAdapter(tabPagerAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -61,5 +66,6 @@ public class MainActivity extends AppCompatActivity {
         });
         tabLayoutMediator.attach();
     }
+
 
 }

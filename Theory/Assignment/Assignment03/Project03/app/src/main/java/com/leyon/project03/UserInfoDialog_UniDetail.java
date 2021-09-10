@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.leyon.project03.Entity.UniversityAffiliation;
+
 
 public class UserInfoDialog_UniDetail extends Fragment {
 
@@ -24,10 +26,10 @@ public class UserInfoDialog_UniDetail extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     // Rename and change types of parameters
-    private UniversityData universityData;
+    private UniversityAffiliation universityData;
 
 
-    public static UserInfoDialog_UniDetail newInstance(UniversityData param1) {
+    public static UserInfoDialog_UniDetail newInstance(UniversityAffiliation param1) {
         UserInfoDialog_UniDetail fragment = new UserInfoDialog_UniDetail();
 
         Bundle args = new Bundle();
@@ -45,7 +47,7 @@ public class UserInfoDialog_UniDetail extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            universityData = (UniversityData) getArguments().getSerializable(ARG_PARAM1);
+            universityData = (UniversityAffiliation) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -70,7 +72,7 @@ public class UserInfoDialog_UniDetail extends Fragment {
         detailsUniversityDepartment.setText(universityData.getDepartment());
         detailsUniversityStudyLevel.setText(universityData.getStudyLevel());
         detailsUniversityEmail.setText(universityData.getUniversityEmail());
-        detailsStudentID.setText(Integer.toString(universityData.getStudentID()));
+        detailsStudentID.setText(Integer.toString(universityData.getUniversityStudentID()));
 
     }
 }

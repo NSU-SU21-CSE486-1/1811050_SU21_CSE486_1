@@ -8,11 +8,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PagerAdapter extends FragmentStateAdapter {
+public class TabPagerAdapter extends FragmentStateAdapter {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
 
-    public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public TabPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
