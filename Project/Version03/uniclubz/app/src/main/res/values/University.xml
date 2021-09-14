@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="university_list">
+        <item>NSU</item>
+        <item>IUB</item>
+        <item>EWU</item>
+        <item>DU</item>
+        <item>BUET</item>
+        <item>AIUB</item>
+    </string-array>
+
+    <string-array name="departments">
+        <item>Engineering</item>
+        <item>Medical &amp; Pharmacy</item>
+        <item>Business &amp; Accounting</item>
+        <item>Arts &amp; Humanities</item>
+    </string-array>
+
+    <string-array name="study_levels">
+        <item>Bachelors</item>
+        <item>Masters</item>
+        <item>PHD</item>
+    </string-array>
+</resources>

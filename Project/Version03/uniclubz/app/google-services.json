@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "907542324151",
+    "firebase_url": "https://uniclubz-e5398-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "uniclubz-e5398",
+    "storage_bucket": "uniclubz-e5398.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907542324151:android:425811cfed5cffa55fbe32",
+        "android_client_info": {
+          "package_name": "com.leyon.uniclubz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907542324151-ircbr7cstdb2ursavgereecogpaamv2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABlAWS1BcAjX4mB9-OewRVcJ6gYlS0uLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907542324151-ircbr7cstdb2ursavgereecogpaamv2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
