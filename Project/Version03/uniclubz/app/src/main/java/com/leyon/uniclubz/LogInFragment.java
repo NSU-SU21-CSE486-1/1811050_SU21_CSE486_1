@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
@@ -76,7 +75,7 @@ public class LogInFragment extends DialogFragment {
         TextView failMessage = view.findViewById(R.id.loginFailMessage);
 
         EditText email = view.findViewById(R.id.email);
-        EditText password = view.findViewById(R.id.password);
+        EditText password = view.findViewById(R.id.loginPassword);
 
         Button loginButton = view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -86,9 +85,7 @@ public class LogInFragment extends DialogFragment {
                 MainActivity.mViewModel.signInStudent(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //Toast.makeText(getContext(), "complete", Toast.LENGTH_SHORT).show();
-                        boolean success = MainActivity.mViewModel.isStudentSignedIn();
-
+                        boolean success = task.isSuccessful();
                         if (success) {
                             Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();
                             dismiss(); //close login fragment
@@ -100,7 +97,7 @@ public class LogInFragment extends DialogFragment {
             }
         });
 
-        Button signUpButton = view.findViewById(R.id.signupButton);
+        Button signUpButton = view.findViewById(R.id.signupButton_LoginFragment);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

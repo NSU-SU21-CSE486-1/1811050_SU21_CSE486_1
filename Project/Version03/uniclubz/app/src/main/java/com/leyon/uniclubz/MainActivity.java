@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -40,12 +42,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         mViewModel = new ViewModelProvider(this).get(AppViewModel.class);
-        //setup observer here
 
         loginButton = findViewById(R.id.loginButton);
-        if (mViewModel.isStudentSignedIn()) {
-            loginButton.setText("Log Out");
-        }
+
+
+        mViewModel.getAuthLiveData().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    loginButton.setText("Log Out");
+                } else {
+                    loginButton.setText("Log In");
+                }
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //mViewModel.test();
     }
 
     @Override
@@ -85,22 +101,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void logIn(View view) {
-        if (mViewModel.isStudentSignedIn()) {
-            //log out if signed in
-            mViewModel.signOutStudent();
-            loginButton.setText("Log In");
-        } else {
-            //log in if not signed in
-            drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.START);
 
-            LogInFragment logInFragment= LogInFragment.newInstance("");
+        if (!mViewModel.isStudentSignedIn()) {
+            LogInFragment logInFragment = LogInFragment.newInstance("");
             logInFragment.show(getSupportFragmentManager(), "LoginFragment");
-            //verify login success or failure
-            if (mViewModel.isStudentSignedIn()) {
-                loginButton.setText("Log In");
-            } else {
-                loginButton.setText("Log Out");
-            }
+        } else {
+            mViewModel.signOutStudent();
         }
     }
 }

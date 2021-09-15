@@ -149,6 +149,22 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Phone Number" />
+
+                <EditText
+                    android:id="@+id/userPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="0123456789"
+                    android:inputType="phone"
+                    android:text="0" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:text="Email (use this for login)" />
 
                 <EditText
@@ -162,16 +178,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Phone Number" />
+                    android:text="Password (use this for login)" />
 
                 <EditText
-                    android:id="@+id/userPhoneNumber"
+                    android:id="@+id/userPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="0123456789"
-                    android:inputType="phone"
-                    android:text="0" />
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/signUpButton_SignUpFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SignUp!" />
+
 
             </LinearLayout>
 

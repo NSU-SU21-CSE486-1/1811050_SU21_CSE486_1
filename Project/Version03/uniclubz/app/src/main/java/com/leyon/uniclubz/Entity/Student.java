@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Student {
 
-    long id;
+    String id;
 
     String name;
 
@@ -25,11 +25,11 @@ public class Student {
         //empty constructor
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -90,6 +90,6 @@ public class Student {
     }
 
     public void addUniversityAffiliation(UniversityAffiliation universityAffiliation) {
-
+        universityAffiliationList.add(universityAffiliation);
     }
 }

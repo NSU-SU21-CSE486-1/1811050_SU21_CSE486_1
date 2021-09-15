@@ -1,37 +1,52 @@
 package com.leyon.uniclubz.Repository;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.leyon.uniclubz.Entity.Student;
+import com.leyon.uniclubz.Entity.UniversityAffiliation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Repository {
 
-    private boolean loggedIn = false;
-
-    DatabaseReference root = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference users = root.child("Users");
-    DatabaseReference clubs = root.child("Clubs");
-    DatabaseReference events = root.child("Events");
-    FirebaseAppLiveData firebaseAppLiveData = new FirebaseAppLiveData(root); //for observe LiveData
-
+    //Firebase Auth
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+    //Firebase Realtime Database
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference studentsRef = rootRef.child("Students");
+    DatabaseReference clubsRef = rootRef.child("Clubs");
+    DatabaseReference eventsRef = rootRef.child("Events");
+
+    FirebaseDatabaseLiveData firebaseDatabaseLiveData = new FirebaseDatabaseLiveData(eventsRef);
+    FirebaseAuthLiveData firebaseAuthLiveData = new FirebaseAuthLiveData(firebaseAuth);
 
     public Repository() {
         //empty constructor
     }
 
-    public boolean signUpStudent(String email, String password) {
-        return firebaseAuth.createUserWithEmailAndPassword(email, password).isSuccessful();
+    //authentication
+
+    public Task<AuthResult> signUpStudent(String email, String password) {
+        return firebaseAuth.createUserWithEmailAndPassword(email, password);
     }
 
     public boolean isStudentSignedIn() {
-        loggedIn = (firebaseAuth.getCurrentUser() != null ); //not null means signed in
+        boolean loggedIn  = (firebaseAuth.getCurrentUser() != null ); //not null means signed in
         return loggedIn;
     }
 
@@ -45,15 +60,46 @@ public class Repository {
 
     public void deleteCurrentUser() {
         if (isStudentSignedIn()) {
+            //delete user
             firebaseAuth.getCurrentUser().delete(); //delete signed in user
+            //delete user data clubs, events
+        }
+    }
+
+    //@NonNull
+    public String getSignedInUserUID() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            return user.getUid();
+        } else {
+            return null;
         }
     }
 
     //database
 
+    public void addStudentDetailsToDatabase(Student student) {
+        if (isStudentSignedIn()) {
+            DatabaseReference usrRef = studentsRef.child(getSignedInUserUID());
+            student.setId(firebaseAuth.getUid());
+            usrRef.setValue(student);
+        }
+    }
+
+    public void deleteStudentDetailsFromDatabase() {
+        if (isStudentSignedIn()) {
+            String studentUID = getSignedInUserUID();
+        }
+    }
+
     @NonNull
-    public LiveData<DataSnapshot> getLiveData() {
-        return firebaseAppLiveData;
+    public LiveData<DataSnapshot> getDatabaseLiveData() {
+        return firebaseDatabaseLiveData;
+    }
+
+    @NonNull
+    public LiveData<Boolean> getAuthLiveData() {
+        return firebaseAuthLiveData;
     }
 
 

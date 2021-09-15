@@ -45,7 +45,7 @@
         android:layout_marginTop="20dp" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/loginPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -73,7 +73,7 @@
         android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/signupButton"
+        android:id="@+id/signupButton_LoginFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#9C27B0"

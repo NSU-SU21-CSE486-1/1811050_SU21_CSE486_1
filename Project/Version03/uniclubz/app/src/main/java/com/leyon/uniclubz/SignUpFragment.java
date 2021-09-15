@@ -20,6 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.leyon.uniclubz.Entity.Student;
 import com.leyon.uniclubz.Entity.UniversityAffiliation;
 
@@ -154,63 +157,86 @@ public class SignUpFragment extends DialogFragment {
             }
         });
 
-        //parse data from form and add to database
-        try {
-            Student newUserData = new Student(); //save all data here then add it to database;
+        Button submitSignUp = view.findViewById(R.id.signUpButton_SignUpFragment);
+        submitSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //parse data from form and add to database
+                try {
+                    Student newUserData = new Student(); //save all data here then add it to database;
 
-            //data from page1
-            EditText userNameText = page1.findViewById(R.id.userNameText);
-            DatePicker dateOfBirthPicker = page1.findViewById(R.id.dateOfBirthPicker);
-            EditText nidNumber = page1.findViewById(R.id.nidNumber);
-            EditText bloodGroupText = page1.findViewById(R.id.bloodGroupText);
+                    //data from page1
+                    EditText userNameText = page1.findViewById(R.id.userNameText);
+                    DatePicker dateOfBirthPicker = page1.findViewById(R.id.dateOfBirthPicker);
+                    EditText nidNumber = page1.findViewById(R.id.nidNumber);
+                    EditText bloodGroupText = page1.findViewById(R.id.bloodGroupText);
 
-            //store data from page1
-            newUserData.setName(userNameText.getText().toString());
-            newUserData.setDateOfBirth( dateOfBirthPicker.getDayOfMonth()
-                    + "/" + dateOfBirthPicker.getMonth()
-                    + "/" + dateOfBirthPicker.getYear() );
-            newUserData.setNid(Integer.parseInt(nidNumber.getText().toString()));
-            newUserData.setBloodGroup(bloodGroupText.getText().toString());
+                    //store data from page1
+                    newUserData.setName(userNameText.getText().toString());
+                    newUserData.setDateOfBirth( dateOfBirthPicker.getDayOfMonth()
+                            + "/" + dateOfBirthPicker.getMonth()
+                            + "/" + dateOfBirthPicker.getYear() );
+                    newUserData.setNid(Integer.parseInt(nidNumber.getText().toString()));
+                    newUserData.setBloodGroup(bloodGroupText.getText().toString());
 
-            //data from page2
-            int numOfUniAffiliations = SignUpFragment_UniAffiliation.numberOfUniInfoFormsCreated;
+                    //data from page2
+                    int numOfUniAffiliations = SignUpFragment_UniAffiliation.numberOfUniInfoFormsCreated;
 
-            for (int i=1; i <= numOfUniAffiliations; i++) {
-                View uniV = page2.findViewWithTag("UniData" + i); //tag format set in SignUpFragment class
+                    for (int i=1; i <= numOfUniAffiliations; i++) {
+                        View uniV = page2.findViewWithTag("UniData" + i); //tag format set in SignUpFragment class
 
-                Spinner universitySelectSpinner = uniV.findViewById(R.id.universitySelectSpinner);
-                Spinner universityDepartmentSelectSpinner = uniV.findViewById(R.id.universityDepartmentSelectSpinner);
-                Spinner universityStudyLevelSelectSpinner = uniV.findViewById(R.id.universityStudyLevelSelectSpinner);
-                EditText studentIDNumber = uniV.findViewById(R.id.studentIDNumber);
-                EditText universityEmail = uniV.findViewById(R.id.universityEmail);
+                        Spinner universitySelectSpinner = uniV.findViewById(R.id.universitySelectSpinner);
+                        Spinner universityDepartmentSelectSpinner = uniV.findViewById(R.id.universityDepartmentSelectSpinner);
+                        Spinner universityStudyLevelSelectSpinner = uniV.findViewById(R.id.universityStudyLevelSelectSpinner);
+                        EditText studentIDNumber = uniV.findViewById(R.id.studentIDNumber);
+                        EditText universityEmail = uniV.findViewById(R.id.universityEmail);
 
-                //store data from UniversityInfoForm fragment from page2
-                UniversityAffiliation newUniData = new UniversityAffiliation(
-                        universitySelectSpinner.getSelectedItem().toString(),
-                        universityStudyLevelSelectSpinner.getSelectedItem().toString(),
-                        universityDepartmentSelectSpinner.getSelectedItem().toString(),
-                        universityEmail.getText().toString(),
-                        Integer.parseInt(studentIDNumber.getText().toString())
-                );
+                        //store data from UniversityInfoForm fragment from page2
+                        UniversityAffiliation newUniData = new UniversityAffiliation(
+                                universitySelectSpinner.getSelectedItem().toString(),
+                                universityStudyLevelSelectSpinner.getSelectedItem().toString(),
+                                universityDepartmentSelectSpinner.getSelectedItem().toString(),
+                                universityEmail.getText().toString(),
+                                Integer.parseInt(studentIDNumber.getText().toString())
+                        );
 
-                newUserData.addUniversityAffiliation(newUniData);
+                        newUserData.addUniversityAffiliation(newUniData);
+                    }
+
+                    //data from page3
+                    EditText userEmailText = page3.findViewById(R.id.userEmailText);
+                    EditText userPhoneNumber = page3.findViewById(R.id.userPhoneNumber);
+
+                    //store page3 data
+                    newUserData.setPersonalEmail(userEmailText.getText().toString());
+                    newUserData.setPhoneNumber( Integer.parseInt(userPhoneNumber.getText().toString()) );
+
+                    EditText password = view.findViewById(R.id.userPassword);
+                    String pass = password.getText().toString();
+
+                    //call viewmodel in mainactivity and add student to database
+                    MainActivity.mViewModel.signUpStudent(newUserData.getPersonalEmail(), pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                MainActivity.mViewModel.signInStudent(newUserData.getPersonalEmail(), pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        MainActivity.mViewModel.addStudentDetailsToDatabase(newUserData);
+                                        Toast.makeText(getActivity().getApplicationContext(), "Sign Up Complete!", Toast.LENGTH_SHORT).show();
+                                        dismiss();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.e("Submit", e.toString());
+                    //error caused when Integer.parse gets empty string from EditText
+                    Toast.makeText(getContext(), "Please fill up all forms", Toast.LENGTH_SHORT).show();
+                }
             }
+        });
 
-            //data from page3
-            EditText userEmailText = page3.findViewById(R.id.userEmailText);
-            EditText userPhoneNumber = page3.findViewById(R.id.userPhoneNumber);
-
-            //store page3 data
-            newUserData.setPersonalEmail(userEmailText.getText().toString());
-            newUserData.setPhoneNumber( Integer.parseInt(userPhoneNumber.getText().toString()) );
-
-            //call viewmodel in mainactivity and add student to database
-
-            dismiss();
-        } catch (Exception e) {
-            Log.e("Submit", e.toString());
-            //error caused when Integer.parse gets empty string from EditText
-            Toast.makeText(getContext(), "Please fill up all forms", Toast.LENGTH_SHORT).show();
-        }
     }
 }
