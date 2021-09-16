@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/profileView_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/profileView_dateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dateOfBirth"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/profileView_nid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="nid"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/profileView_personalEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="personalEmail"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/profileView_phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="phoneNumber"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/profileView_bloodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="bloodGroup"
+            android:layout_margin="10dp" />
+
+        <LinearLayout
+            android:id="@+id/profileView_UniversityAffiliationFragmentHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+</ScrollView>

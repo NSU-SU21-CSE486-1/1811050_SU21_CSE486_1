@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClubFragment_ClubAdminFragment"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Club Admin Page"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="30dp"/>
+
+    <TextView
+        android:id="@+id/adminClubName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Club Name:"
+        android:layout_margin="20dp" />
+
+
+    <Button
+        android:id="@+id/adminCreateNewEventButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create New Event" />
+
+    <Button
+        android:id="@+id/adminViewCreatedEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See Created Events" />
+
+    <Button
+        android:id="@+id/adminViewMemberList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See Member List" />
+
+    <Button
+        android:id="@+id/adminViewMemberJoinRequests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Member Join Request" />
+
+    <Button
+        android:id="@+id/adminDeleteClub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E91E63"
+        android:text="Delete Club"
+        android:layout_margin="30dp"/>
+
+</LinearLayout>
