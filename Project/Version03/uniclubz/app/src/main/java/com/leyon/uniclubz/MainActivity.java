@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
-        //FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         switch(item.getItemId()) {
             //case check id of menu item
@@ -95,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //fragmentTransaction.add(R.id.fragment_container, test1fragment).commit();
 
                 //return true;
+            case(R.id.profileMenu):
+                drawer.closeDrawer(GravityCompat.START);
+                ProfileFragment profileFragment = ProfileFragment.newInstance("","");
+                fragmentTransaction.add(R.id.fragment_container, profileFragment).commit();
+                break;
         }
 
         return false;

@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.leyon.uniclubz.Entity.Student;
 import com.leyon.uniclubz.Repository.Repository;
 
@@ -56,6 +57,10 @@ public class AppViewModel extends AndroidViewModel {
 
     public void addStudentDetailsToDatabase(Student student) {
         repo.addStudentDetailsToDatabase(student);
+    }
+
+    public DatabaseReference getSignedInStudent() {
+        return repo.getSignedInStudent();
     }
 
 

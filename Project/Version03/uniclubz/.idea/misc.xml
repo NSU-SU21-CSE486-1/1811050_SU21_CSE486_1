@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layout/fragment_profile__university_affiliation.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_sign_up__uni_affiliation.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.32708333333333334" />

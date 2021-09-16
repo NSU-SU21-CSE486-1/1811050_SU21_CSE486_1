@@ -1,25 +1,16 @@
 package com.leyon.uniclubz.Repository;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.leyon.uniclubz.Entity.Student;
-import com.leyon.uniclubz.Entity.UniversityAffiliation;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Repository {
 
@@ -89,7 +80,12 @@ public class Repository {
     public void deleteStudentDetailsFromDatabase() {
         if (isStudentSignedIn()) {
             String studentUID = getSignedInUserUID();
+            //studentsRef.child(studentUID).removeValue();
         }
+    }
+
+    public DatabaseReference getSignedInStudent() {
+        return studentsRef.child(getSignedInUserUID());
     }
 
     @NonNull

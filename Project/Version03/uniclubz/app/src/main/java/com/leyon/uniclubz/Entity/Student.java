@@ -1,9 +1,10 @@
 package com.leyon.uniclubz.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student {
+public class Student implements Serializable {
 
     String id;
 

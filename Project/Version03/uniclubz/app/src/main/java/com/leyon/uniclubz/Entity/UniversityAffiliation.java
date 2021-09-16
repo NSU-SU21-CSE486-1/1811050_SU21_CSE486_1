@@ -1,6 +1,8 @@
 package com.leyon.uniclubz.Entity;
 
-public class UniversityAffiliation {
+import java.io.Serializable;
+
+public class UniversityAffiliation implements Serializable {
 
     long id;
 
