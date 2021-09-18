@@ -137,6 +137,11 @@ public class Repository {
         return query;
     }
 
+    public Query getClubNameByID(String id) {
+        Query query = clubsRef.orderByChild("id").equalTo(id);
+        return query;
+    }
+
     @NonNull
     public LiveData<DataSnapshot> getDatabaseEventLiveData() {
         return firebaseDatabaseEventLiveData;

@@ -1,5 +1,6 @@
 package com.leyon.uniclubz;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.leyon.uniclubz.Entity.Event;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdapter.ViewHolder> {
@@ -45,6 +50,25 @@ public class EventFragmentAdapter extends RecyclerView.Adapter<EventFragmentAdap
 
         holder.eventName.setText(eventsList.get(position).getEventName());
         holder.eventClubName.setText("Club: " + eventsList.get(position).getEventOrganizingClubId());
+        MainActivity.mViewModel.getClubNameByID(eventsList.get(position).getEventOrganizingClubId()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Log.d("EventClubName", snapshot.toString());
+                //holder.eventClubName.setText("Club: " + );
+                HashMap<String, HashMap<String, Object>> eventMap = (HashMap<String, HashMap<String, Object>>) snapshot.getValue();
+                for (String c :eventMap.keySet()) {
+                    HashMap<String, Object> x = eventMap.get(c);
+
+                    holder.eventClubName.setText("Club: " + x.get("clubName"));
+                    break;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         holder.eventDate.setText("Event Date: " + eventsList.get(position).getEventDate());
         holder.eventTime.setText("Event Start Time: " + eventsList.get(position).getEventTime());
     }

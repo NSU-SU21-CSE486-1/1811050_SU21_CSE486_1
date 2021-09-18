@@ -93,24 +93,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         switch(item.getItemId()) {
-            //case check id of menu item
-                //drawer.closeDrawer(GravityCompat.START);
-                //FragmentClass test1fragment = FragmentClass.newInstance();
-                //fragmentTransaction.add(R.id.fragment_container, test1fragment).commit();
-                //return true;
             case(R.id.homeMenu):
                 drawer.closeDrawer(GravityCompat.START);
                 fragmentTransaction.replace(R.id.fragment_container, new EventFragment()).addToBackStack(null).commit();
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
+
             case(R.id.profileMenu):
-                drawer.closeDrawer(GravityCompat.START);
-                fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment()).addToBackStack(null).commit();
+                if (mViewModel.isStudentSignedIn()) {
+                    drawer.closeDrawer(GravityCompat.START);
+                    fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment()).addToBackStack(null).commit();
+                } else {
+                    Toast.makeText(this, "Please Log In First", Toast.LENGTH_SHORT).show();
+                }
                 return true;
+
             case(R.id.clubMenu):
-                drawer.closeDrawer(GravityCompat.START);
-                fragmentTransaction.replace(R.id.fragment_container, new ClubFragment()).addToBackStack(null).commit();
+                if (mViewModel.isStudentSignedIn()) {
+                    drawer.closeDrawer(GravityCompat.START);
+                    fragmentTransaction.replace(R.id.fragment_container, new ClubFragment()).addToBackStack(null).commit();
+                } else {
+                    Toast.makeText(this, "Please Log In First", Toast.LENGTH_SHORT).show();
+                }
                 return true;
+
             case(R.id.exitMenu):
                 finish();
                 System.exit(0);

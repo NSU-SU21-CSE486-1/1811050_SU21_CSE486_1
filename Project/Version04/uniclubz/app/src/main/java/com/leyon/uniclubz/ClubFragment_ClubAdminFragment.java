@@ -6,12 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.leyon.uniclubz.Entity.Club;
 
@@ -67,6 +70,17 @@ public class ClubFragment_ClubAdminFragment extends Fragment {
             public void onClick(View v) {
                 EventFragment_CreateNewEventDialog newEventDialog = EventFragment_CreateNewEventDialog.newInstance(mParam1.getClubName(),mParam1.getId());
                 newEventDialog.show(getParentFragmentManager(), "CreateEvent");
+            }
+        });
+
+        adminViewCreatedEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                //Toast.makeText(getContext(), mParam1.getId(), Toast.LENGTH_SHORT).show();
+                ClubFragment_ClubAdminFragment_ViewClubEvents viewClubEvents = ClubFragment_ClubAdminFragment_ViewClubEvents.newInstance(mParam1.getId());
+                fragmentTransaction.replace(R.id.fragment_container, viewClubEvents).addToBackStack(null).commit();
             }
         });
     }
