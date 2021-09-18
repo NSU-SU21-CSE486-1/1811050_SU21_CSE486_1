@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.leyon.uniclubz.Entity.Club;
+import com.leyon.uniclubz.Entity.Event;
 import com.leyon.uniclubz.Entity.Student;
 import com.leyon.uniclubz.Repository.Repository;
 
@@ -26,8 +27,8 @@ public class AppViewModel extends AndroidViewModel {
     }
 
     //LiveData
-    public LiveData<DataSnapshot> getDatabaseLiveData() {
-        return repo.getDatabaseLiveData();
+    public LiveData<DataSnapshot> getDatabaseEventLiveData() {
+        return repo.getDatabaseEventLiveData();
     }
 
     public LiveData<Boolean> getAuthLiveData() {
@@ -81,6 +82,13 @@ public class AppViewModel extends AndroidViewModel {
         return repo.getSignedInStudentOwnedClubs();
     }
 
+    public Task<Void> addEventToDatabase(Event event) {
+        return repo.addEventToDatabase(event);
+    }
+
+    public Query getEventsOfClub(String clubId) {
+        return repo.getEventsOfClub(clubId);
+    }
 
     /*public void test() {
         //just for testing firebase database

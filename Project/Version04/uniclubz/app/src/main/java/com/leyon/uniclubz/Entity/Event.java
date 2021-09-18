@@ -6,19 +6,19 @@ import java.util.List;
 
 public class Event implements Serializable {
 
-    long id;
+    String id;
     String eventName;
     boolean isPublic;
-    int eventOrganizingClubId;
+    String eventOrganizingClubId;
     String eventDate;
     String eventTime;
     List<String> eventJoiningMembersUID = new ArrayList<>();
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,11 +38,11 @@ public class Event implements Serializable {
         isPublic = aPublic;
     }
 
-    public int getEventOrganizingClubId() {
+    public String getEventOrganizingClubId() {
         return eventOrganizingClubId;
     }
 
-    public void setEventOrganizingClubId(int eventOrganizingClubId) {
+    public void setEventOrganizingClubId(String eventOrganizingClubId) {
         this.eventOrganizingClubId = eventOrganizingClubId;
     }
 

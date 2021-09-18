@@ -118,12 +118,12 @@ public class ClubFragment_MyClubs extends Fragment {
                 for (String c: clubMap.keySet()) {
                     HashMap<String, Object> x = clubMap.get(c);
                     Club club = new Club();
+                    club.setId((String) x.get("id"));
                     club.setClubName((String) x.get("clubName"));
                     club.setClubUniversity((String) x.get("clubUniversity"));
                     club.setClubOwnerUID((String) x.get("clubOwnerUID"));
                     club.setClubMembersUIDList((List<String>) x.get("clubMembersUIDList"));
-                    club.setClubEvents((List<Event>) x.get("clubEvents"));
-                    club.setClubEvents((List<Event>) x.get("clubMemberJoinRequestUIDList"));
+                    club.setClubMemberJoinRequestUIDList((List<String>) x.get("clubMemberJoinRequestUIDList"));
 
                     clubList.add(club);
                 }

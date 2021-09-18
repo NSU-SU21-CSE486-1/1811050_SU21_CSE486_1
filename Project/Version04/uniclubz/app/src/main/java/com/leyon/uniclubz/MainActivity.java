@@ -74,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+
+        //set home fragment
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, new EventFragment()).commit();
     }
 
     @Override
@@ -95,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //fragmentTransaction.add(R.id.fragment_container, test1fragment).commit();
                 //return true;
             case(R.id.homeMenu):
+                drawer.closeDrawer(GravityCompat.START);
+                fragmentTransaction.replace(R.id.fragment_container, new EventFragment()).addToBackStack(null).commit();
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
             case(R.id.profileMenu):

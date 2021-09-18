@@ -61,5 +61,13 @@ public class ClubFragment_ClubAdminFragment extends Fragment {
         Button adminDeleteClub = view.findViewById(R.id.adminDeleteClub);
 
         adminClubName.setText(mParam1.getClubName());
+
+        adminCreateNewEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventFragment_CreateNewEventDialog newEventDialog = EventFragment_CreateNewEventDialog.newInstance(mParam1.getClubName(),mParam1.getId());
+                newEventDialog.show(getParentFragmentManager(), "CreateEvent");
+            }
+        });
     }
 }

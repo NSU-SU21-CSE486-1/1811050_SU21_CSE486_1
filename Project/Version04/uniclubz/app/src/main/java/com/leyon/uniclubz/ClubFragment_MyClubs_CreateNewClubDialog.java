@@ -140,4 +140,6 @@ public class ClubFragment_MyClubs_CreateNewClubDialog extends DialogFragment {
             }
         });
     }
+
+
 }

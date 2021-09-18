@@ -44,7 +44,7 @@ public class ClubFragment_MyClubs_ClubRecyclerAdapter extends RecyclerView.Adapt
                 //go to club admin page
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 ClubFragment_ClubAdminFragment clubAdminFragment = ClubFragment_ClubAdminFragment.newInstance(myClubs.get(i));
-                fragmentTransaction.replace(R.id.fragment_container, clubAdminFragment).commit();
+                fragmentTransaction.replace(R.id.fragment_container, clubAdminFragment).addToBackStack(null).commit();
             }
         });
 

@@ -12,7 +12,6 @@ public class Club implements Serializable {
     String clubUniversity;
     List<String> clubMembersUIDList = new ArrayList<>();
     List<String> clubMemberJoinRequestUIDList = new ArrayList<>();
-    List<Event> clubEvents = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -62,35 +61,11 @@ public class Club implements Serializable {
         this.clubMemberJoinRequestUIDList = clubMemberJoinRequestUIDList;
     }
 
-    public List<Event> getClubEvents() {
-        return clubEvents;
-    }
-
-    public void setClubEvents(List<Event> clubEvents) {
-        this.clubEvents = clubEvents;
-    }
-
-    public void addUIDTOClubMemberJoinRequestUIDList(String uid) {
-        clubMembersUIDList.add(uid);
-    }
-
-    public void removeUIDTOClubMemberJoinRequestUIDList(String uid) {
-        clubMembersUIDList.remove(uid);
-    }
-
     public void addUIDToClubMemberJoinRequestUIDList(String uid) {
         clubMemberJoinRequestUIDList.add(uid);
     }
 
     public void removeUIDToClubMemberJoinRequestUIDList(String uid) {
-        clubMemberJoinRequestUIDList.remove(uid);
-    }
-
-    public void addNewClubEvent(Event event) {
-        clubEvents.add(event);
-    }
-
-    public void removeClubEvent(Event event) {
-        //clubEvents.add(event);
+        //clubMemberJoinRequestUIDList.remove(uid);
     }
 }

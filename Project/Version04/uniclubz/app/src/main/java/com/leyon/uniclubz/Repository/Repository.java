@@ -26,7 +26,7 @@ public class Repository {
     DatabaseReference clubsRef = rootRef.child("Clubs");
     DatabaseReference eventsRef = rootRef.child("Events");
 
-    FirebaseDatabaseLiveData firebaseDatabaseLiveData = new FirebaseDatabaseLiveData(eventsRef);
+    FirebaseDatabaseLiveData firebaseDatabaseEventLiveData = new FirebaseDatabaseLiveData(eventsRef);
     FirebaseAuthLiveData firebaseAuthLiveData = new FirebaseAuthLiveData(firebaseAuth);
 
     public Repository() {
@@ -102,18 +102,38 @@ public class Repository {
         return ref.setValue(club);
     }
 
+    public void removeClubFromDatabase(String clubID) {
+        //search, find verify club owned by signed in student and then remove
+    }
+
     public Query getSignedInStudentOwnedClubs() {
-        Query x = clubsRef.orderByChild("clubOwnerUID").equalTo(getSignedInUserUID());
-        return x;
+        Query query = clubsRef.orderByChild("clubOwnerUID").equalTo(getSignedInUserUID());
+        return query;
     }
 
-    public void addEventToDatabase(Event event) {
-
+    public Task<Void> addEventToDatabase(Event event) {
+        DatabaseReference ref = eventsRef.push();
+        String id = ref.getKey();
+        event.setId(id);
+        return ref.setValue(event);
     }
+
+    public void removeEventFromDatabase(String clubID) {
+        //search, find verify event belongs to club owned by signed in student and then remove
+    }
+
+    public Query getEventsOfClub(String clubId) {
+        Query query = eventsRef.orderByChild("eventOrganizingClubId").equalTo(clubId);
+        return query;
+    }
+
+    /*public void getEventsOfClubsSignedInStudentIsMember() {
+        //not possible to do this with firebase realtime database. need to use firestore instead :(
+    }*/
 
     @NonNull
-    public LiveData<DataSnapshot> getDatabaseLiveData() {
-        return firebaseDatabaseLiveData;
+    public LiveData<DataSnapshot> getDatabaseEventLiveData() {
+        return firebaseDatabaseEventLiveData;
     }
 
     @NonNull
