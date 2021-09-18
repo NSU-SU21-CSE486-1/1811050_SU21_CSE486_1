@@ -16,10 +16,12 @@
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_profile__university_affiliation.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layout/fragment_search_club.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/fragment_sign_up__uni_affiliation.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/myclub_recycler_item.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.32708333333333334" />
+        <entry key="app/src/main/res/layout/search_club_recycer_item.xml" value="0.32708333333333334" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.32708333333333334" />
       </map>
     </option>

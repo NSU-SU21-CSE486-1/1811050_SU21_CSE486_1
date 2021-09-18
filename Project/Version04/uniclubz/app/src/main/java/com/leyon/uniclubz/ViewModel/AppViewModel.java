@@ -90,6 +90,10 @@ public class AppViewModel extends AndroidViewModel {
         return repo.getEventsOfClub(clubId);
     }
 
+    public Query searchForClub(String startWith) {
+        return repo.searchForClub(startWith);
+    }
+
     /*public void test() {
         //just for testing firebase database
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();

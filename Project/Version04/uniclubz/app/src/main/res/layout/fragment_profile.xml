@@ -24,42 +24,54 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="name"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#D1D7F7"/>
 
         <TextView
             android:id="@+id/profileView_dateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="dateOfBirth"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#D1D7F7"/>
 
         <TextView
             android:id="@+id/profileView_nid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="nid"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#D1D7F7"/>
 
         <TextView
             android:id="@+id/profileView_personalEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="personalEmail"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#D1D7F7"/>
 
         <TextView
             android:id="@+id/profileView_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="phoneNumber"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#D1D7F7"/>
 
         <TextView
             android:id="@+id/profileView_bloodGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="bloodGroup"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="#D1D7F7"/>
 
         <LinearLayout
             android:id="@+id/profileView_UniversityAffiliationFragmentHolder"

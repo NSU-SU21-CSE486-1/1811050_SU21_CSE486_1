@@ -128,8 +128,14 @@ public class Repository {
     }
 
     /*public void getEventsOfClubsSignedInStudentIsMember() {
-        //not possible to do this with firebase realtime database. need to use firestore instead :(
+        //get club id where member -> search for events of those clubs
+        //not possible to do this directly with firebase realtime database. need to use firebase firestore instead :(
     }*/
+
+    public Query searchForClub(String startWith) {
+        Query query = clubsRef.orderByChild("clubName").startAt(startWith);
+        return query;
+    }
 
     @NonNull
     public LiveData<DataSnapshot> getDatabaseEventLiveData() {

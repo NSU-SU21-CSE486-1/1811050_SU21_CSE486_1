@@ -52,7 +52,7 @@ public class EventFragment extends Fragment {
         MainActivity.mViewModel.getDatabaseEventLiveData().observe(getActivity(), new Observer<DataSnapshot>() {
             @Override
             public void onChanged(DataSnapshot dataSnapshot) {
-                Toast.makeText(getContext(), "event added and observer fired", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "event added and observer fired", Toast.LENGTH_SHORT).show();
 
                 HashMap<String, HashMap<String, Object>> eventMap = (HashMap<String, HashMap<String, Object>>) dataSnapshot.getValue();
                 List<Event> eventList = new ArrayList<>();
@@ -74,7 +74,11 @@ public class EventFragment extends Fragment {
 
             }
         });
+    }
 
-        //adapter.setEventsList();
+    @Override
+    public void onPause() {
+        super.onPause();
+
     }
 }

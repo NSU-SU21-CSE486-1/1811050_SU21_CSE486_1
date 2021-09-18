@@ -83,5 +83,14 @@ public class ClubFragment extends Fragment {
                 fragmentTransaction.replace(R.id.fragment_container, new ClubFragment_MyClubs()).addToBackStack(null).commit();
             }
         });
+
+        searchClubsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new SearchClubFragment()).addToBackStack(null).commit();
+            }
+        });
     }
 }
