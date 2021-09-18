@@ -26,8 +26,8 @@ public class Repository {
     DatabaseReference clubsRef = rootRef.child("Clubs");
     DatabaseReference eventsRef = rootRef.child("Events");
 
-    FirebaseDatabaseLiveData firebaseDatabaseEventLiveData = new FirebaseDatabaseLiveData(eventsRef);
-    FirebaseAuthLiveData firebaseAuthLiveData = new FirebaseAuthLiveData(firebaseAuth);
+    FirebaseDatabaseLiveData firebaseDatabaseEventLiveData = new FirebaseDatabaseLiveData(eventsRef); //live event to check for new events
+    FirebaseAuthLiveData firebaseAuthLiveData = new FirebaseAuthLiveData(firebaseAuth); //monitor login status
 
     public Repository() {
         //empty constructor

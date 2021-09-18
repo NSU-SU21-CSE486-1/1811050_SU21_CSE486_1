@@ -113,6 +113,9 @@ public class ClubFragment_MyClubs extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 HashMap<String, HashMap<String, Object>> clubMap = (HashMap<String, HashMap<String, Object>>) snapshot.getValue();
+                if (clubMap == null) {
+                    return;
+                }
                 List<Club> clubList = new ArrayList<>();
 
                 for (String c: clubMap.keySet()) {
